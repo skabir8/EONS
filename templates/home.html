@@ -17,17 +17,17 @@
           <h2 style = "font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;">
           <div class="panel panel-default" style="width:50%">
             <div class="panel-heading" style="background:#c2c2d6"><b>Enter Your Destination</b></div>
-            <div class="panel-body">
+            <div class="panel-body" style="background:#f0f0f5">
               <form action="/action_page.php">
               <font color="black" size="5" padding:"5px"> <b>Starting Point</b> <br>
-              <input id="startsearchTextField" type="text" color="black" name="start"><br>
+              <input id="startsearchTextField" type="text" color="black" name="start">
 
-              <button class="btn btn-primary" type="button" onclick="getLocation()">Get My Location</button>
+              <button class="btn btn-primary" type="button" onclick="getLocation" style="background-color:#8080ff">Find Me</button>
               <br><br>
               <b>Ending Point</b> <br>
               <input id="endsearchTextField" type="text" name="end"><br>
-              </font>
-              <a class="btn btn-primary">Find Route</a><br><br>
+            </font> <br>
+              <a class="btn btn-primary" style="width:fit; padding:14px;font-size:20px; background-color:#8080ff">Get Routes</a><br><br>
 
             </form>
 
