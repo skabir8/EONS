@@ -14,12 +14,16 @@
             <div class="panel-heading">Enter Your Destination</div>
             <div class="panel-body">
               <form action="/action_page.php">
-              <font color="#black"> Starting Point </font><br>
-              <input type="text" name="start"><br>
+              <font color="black"> Starting Point <br>
+              <input id="start" type="text" color="black" name="start"><br>
+
+              <button type="button" onclick="getLocation()">Get My Location</button>
               <br>
-              <font color="black"> Ending Point </font><br>
+              Ending Point <br>
+                </font>
               <input type="text" name="end"><br><br>
                 <a class="btn btn-primary">Find Route</a>
+
             </form>
 
             </div>
@@ -31,7 +35,23 @@
 
     </div>
   </div>
-  
+
+  <script>
+  var x = document.getElementById("start");
+
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          x.value = "Geolocation is not supported by this browser.";
+      }
+  }
+
+  function showPosition(position) {
+      x.value = position.coords.latitude + "," + position.coords.longitude;
+  }
+  </script>
+
 </header>
 
 {% endblock %}
