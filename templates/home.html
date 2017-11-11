@@ -2,6 +2,7 @@
 {% block content %}
 
 <header>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <div class="header-content">
         <div class="header-content-inner">
           <h1 id="homeHeading"><font color="#ffffff"><br><br><br>EYES ON NEIGHBORHOOD STREETS</font></h1>
@@ -14,15 +15,15 @@
             <div class="panel-heading">Enter Your Destination</div>
             <div class="panel-body">
               <form action="/action_page.php">
-              <font color="black"> Starting Point <br>
-              <input id="start" type="text" color="black" name="start"><br>
+              <font color="black"> Starting Point <br><br>
+              <input id="startsearchTextField" type="text" color="black" name="start"><br>
 
-              <button type="button" onclick="getLocation()">Get My Location</button>
-              <br>
-              Ending Point <br>
-                </font>
-              <input type="text" name="end"><br><br>
-                <a class="btn btn-primary">Find Route</a>
+              <button class="btn btn-primary" type="button" onclick="getLocation()">Get My Location</button>
+              <br><br>
+              Ending Point <br><br>
+              <input id="endsearchTextField" type="text" name="end"><br><br>
+              </font>
+              <a class="btn btn-primary">Find Route</a>
 
             </form>
 
@@ -32,12 +33,11 @@
 
         </div>
       </center>
-
     </div>
   </div>
 
   <script>
-  var x = document.getElementById("start");
+  var x = document.getElementById("startsearchTextField");
 
   function getLocation() {
       if (navigator.geolocation) {
@@ -50,7 +50,19 @@
   function showPosition(position) {
       x.value = position.coords.latitude + "," + position.coords.longitude;
   }
+
+  function initialize() {
+
+    var input = document.getElementById('startsearchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    var input2 = document.getElementById('endsearchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input2);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
   </script>
+
 
 </header>
 
