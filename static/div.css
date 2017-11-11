@@ -1,0 +1,21 @@
+.inline{
+    display:inline;
+}
+.left{
+    width:60%;
+    float:left;
+    height:100%;
+    overflow:auto;
+}
+.right{
+    margin-left:60%;
+    overflow: hidden;
+    position: fixed;
+}
+.hidden{
+    font-size:0px;
+}
+
+
+
+
