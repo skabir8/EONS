@@ -35,14 +35,37 @@ for k in range(len(l2)):
 j = 0
 d = {}
 
+dmanhattan = {}
+dbrooklyn = {}
+dstatenisland = {}
+dqueens = {}
+dbronx = {}
+
 for link in soup.find_all('input'):
     if link.get('type') == "checkbox":
 
         #output as string-- easier to read
         #print("Name: " + l3[j] + " Link: ""dotsignals.org/multiview2.php?listcam=" + link.get('value'))
 
-        #output as dictionary
-        d[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
-        j = j + 1
+        #output as a single dictionary (unordered)
+        #d[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
 
-print(d)
+        #build dictionaries based on borough
+        if j < 215:
+            dmanhattan[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+        elif j < 312:
+            dbrooklyn[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+        elif j < 349:
+            dbronx[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+        elif j < 516:
+            dqueens[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+        else:
+            dstatenisland[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+        j = j + 1
+        
+#print(dmanhattan)
+#print(dbrooklyn)
+#print(dbronx)
+#print(dqueens)
+#print(dstatenisland)
+#print(d)
