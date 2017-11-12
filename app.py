@@ -19,7 +19,8 @@ def map():
     end = request.form['end']
     #end = "C-Town Supermarkets, 241 Taaffe Pl, Brooklyn, NY 11205"
     data_dic = utils.route_gen.get_routes(start, end)
-#    return render_template("map.html", data = data_dic)
+    #print data_dic
+    return render_template("map.html", data = data_dic)
 
 @app.route("/pmap", methods=["GET","POST"])
 def pmap():
