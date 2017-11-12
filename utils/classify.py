@@ -38,7 +38,13 @@ def mutate_url(url):
     start_point = url.find('=')
     return 'http://dotsignals.org/google_popup.php?cid=' + (url[start_point+1:])
 
-print (mutate_url('http://dotsignals.org/multiview2.php?listcam=983'))
+
+def get_all_cams(camlist):
+    ret_sum = 0
+    for x in camlist:
+        ret_sum += get_ped_percentage(get_cam_image(x))
+    return ret_sum
+#print (mutate_url('http://dotsignals.org/multiview2.php?listcam=983'))
 #get_cam_image('http://dotsignals.org/google_popup.php?cid=503')
 #http://dotsignals.org/multiview2.php?listcam=983
 
