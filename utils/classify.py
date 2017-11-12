@@ -58,7 +58,7 @@ def four_cam_avg():
         total += cam
     print(total/4)
 
-    
+
 #print (mutate_url('http://dotsignals.org/multiview2.php?listcam=983'))
 #get_cam_image('http://dotsignals.org/google_popup.php?cid=503')
 #http://dotsignals.org/multiview2.php?listcam=983

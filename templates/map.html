@@ -112,7 +112,15 @@
 
         ///console.log(all_camera_pos);
         var best_route = get_cameras(line, line2, all_camera_pos, all_camera_link);
-        console.log(best_route);
+        //console.log(best_route);
+        var camml = best_route
+        //console.log(camml.camera_links.toString())
+        var plac = '/pmap?cams='+ camml.camera_links.toString() + '&route='+"{{data['corr']}}"
+        console.log(plac)
+        //console.log(plac)
+        //window.location.href = plac;
+
+
       }
 
       function get_cameras(l, l2, ci, cl) {
@@ -152,6 +160,7 @@
           }
         }
       }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4&callback=initMap"
     async defer></script>

@@ -5,7 +5,7 @@ import utils.geolocate
 import utils.route_gen
 import utils.cam_coors
 import utils.complaint
-
+import polyline
 app= Flask(__name__)
 
 @app.route("/")
@@ -24,9 +24,39 @@ def map():
 
 @app.route("/pmap", methods=["GET","POST"])
 def pmap():
-    s = request.args.get('s')
-    cl = request.args.get('cl')
-    return s + cl
+    s = request.args.get('cams')
+    cl = request.args.get('route')
+    all_c = s.split(',')[1:-2]
+    all_lists =[]
+    summ = 0
+    for x in all_c:
+        all_lists.append('http://dotsignals.org/google_popup.php?cid='+ x)
+    summ = utils.classify.get_all_cams(all_lists)
+    pol_val = polyline.decode(cl)
+    origin = pol_val[0]
+    destination = pol_val[-1]
+    ret_dic = {}
+    ret_dic['origin'] = origin
+    ret_dic['destination'] = destination
+    poly_line_array= [pol_val]
+    rets=[]
+    for i in poly_line_array:
+        ret_val = ''
+        for vals in i:
+            ret_val += '{lat: ' + str(vals[0]) + ',' + 'lng: ' + str(vals[1])+'}, '
+        ret_val = ret_val[:-2]
+        rets.append(ret_val)
+    data_dic = ret_dic
+    ret_dic['way1'] = rets[0]
+    ret_dic['safe'] = summ
+    print(data_dic)
+    return render_template("map2.html", data = data_dic)
+    #print (summ)
+
+
+    #print (all_c)
+    #print cl
+    #return "lol"
 
 @app.route("/comp", methods=['GET','POST'])
 def compform():
