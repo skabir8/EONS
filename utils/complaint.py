@@ -6,8 +6,7 @@ import datetime
 DIR=os.path.dirname(os.path.realpath(__file__))
 DIR+='/../static/complaints.db'
 
-db = sqlite3.connect(DIR)
-c = db.cursor()
+
 
 def getCoords(address):
     data = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4")
@@ -15,14 +14,20 @@ def getCoords(address):
     return str(coords['lat']) + ',' + str(coords['lng'])
 
 def addComplaint(complaint,address):
+    db = sqlite3.connect(DIR)
+    c = db.cursor()
     c.execute("INSERT INTO bronx (complaint, coord, cdate) VALUES (?,?,?)",
     (complaint, getCoords(address), datetime.datetime.now()))
     db.commit()
+    db.close()
     return "Complaint Submitted"
 
 def getComplaint(borough):
+    db = sqlite3.connect(DIR)
+    c = db.cursor()
     c.execute("SELECT * FROM " + borough)
     comps = c.fetchall()
+    db.close()
     print comps
-    
+
 getComplaint('bronx')

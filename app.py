@@ -4,6 +4,7 @@ import utils.classify
 import utils.geolocate
 import utils.route_gen
 import utils.cam_coors
+import utils.complaint
 
 app= Flask(__name__)
 
@@ -23,7 +24,9 @@ def compform():
     if request.method=="GET":
         return render_template('complaintform.html')
     if request.method=="POST":
-
+        complaint = request.form.get('complaint')
+        address = request.form.get('location')
+        utils.complaint.addComplaint(complaint,address)
         return "Complaint Submitted"
 
 app.run(debug=True,host="0.0.0.0",port=5000)
