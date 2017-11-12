@@ -25,19 +25,17 @@
       var map;
       function initMap() {
         var origin = {
-          lat: parseFloat(data['origin'][0]),
-          lng: parseFloat(data['origin'][1])
+          lat: parseFloat({{data['origin'][0]}}),
+          lng: parseFloat({{data['origin'][1]}})
         };
         var dest = {
-          lat: parseFloat(data['destination'][0]),
-          lng: parseFloat(data['destination'][1])
+          lat: parseFloat({{data['destination'][0]}}),
+          lng: parseFloat({{data['destination'][1]}})
         };
-        var middle = {lat: (origin2.lat+dest2.lat)/2, lng: (origin2.lng+dest2.lng)/2};
+        var middle = {lat: (origin.lat+dest.lat)/2, lng: (origin.lng+dest.lng)/2};
         var route = new Array({{data['way1']}});
         var route2 = new Array({{data['way2']}});
 
-        var all_camera_pos = [brooklyn, queens, manhattan, staten_island, bronx];
-        var all_camera_link = [brooklyn_links, queens_links, manhattan_links, staten_island_links, bronx_links];
 
         var bronx = new Array({lat: 40.8201415, lng: -73.9130692}, {lat: 40.8311993, lng: -73.90032889999999}, {lat: 40.80778189999999, lng: -73.9295152}, {lat: 40.8228401, lng: -73.88266770000001}, {lat: 40.834927, lng: -73.894341}, {lat: 40.8433244, lng: -73.89298649999999}, {lat: -3.1133909, lng: -59.9770398}, {lat: 40.8138009, lng: -73.9313702}, {lat: 40.8624565, lng: -73.89693439999999}, {lat: 40.8267198, lng: -73.922624}, {lat: 40.8185166, lng: -73.9272715}, {lat: 40.8846196, lng: -73.9149079}, {lat: 40.8280969, lng: -73.9335143}, {lat: 40.8291147, lng: -73.92888219999999}, {lat: 40.8036156, lng: -73.91589549999999}, {lat: 40.8277942, lng: -73.9118528}, {lat: 40.8841352, lng: -73.8261133}, {lat: 40.8563742, lng: -73.8388296}, {lat: 40.856701, lng: -73.8693195}, {lat: 40.8644596, lng: -73.81331279999999}, {lat: 42.140847, lng: -72.561989}, {lat: 40.8279071, lng: -73.912172}, {lat: 40.8519031, lng: -73.89837340000001});
         var brooklyn = new Array({lat: 40.6113471, lng: -74.0348607}, {lat: 40.6890694, lng: -73.9904754}, {lat: 40.4536478, lng: -76.9687797}, {lat: 40.5756434, lng: -73.9735422}, {lat: 41.768027, lng: -87.79838509999999}, {lat: 40.6043852, lng: -74.01879210000001}, {lat: 40.652683, lng: -73.8644241}, {lat: 40.5967529, lng: -73.9060863}, {lat: 40.5896199, lng: -73.96575849999999}, {lat: 40.64278789999999, lng: -73.877181}, {lat: 40.7085855, lng: -73.83899579999999}, {lat: 40.71891249999999, lng: -73.95871249999999}, {lat: 40.6911302, lng: -73.9985411}, {lat: 40.7491986, lng: -73.8969491}, {lat: 40.680143, lng: -74.00467549999999}, {lat: 40.7055431, lng: -73.96784579999999}, {lat: 40.7025075, lng: -73.95635399999999}, {lat: 40.6992396, lng: -73.98591329999999}, {lat: 40.6992711, lng: -73.9831075}, {lat: 40.7082657, lng: -73.9551147}, {lat: 40.6674842, lng: -73.92186989999999}, {lat: 40.7131538, lng: -73.9656466}, {lat: 40.7007381, lng: -73.9897263}, {lat: 40.589686, lng: -73.900223}, {lat: 40.6223824, lng: -73.9366314}, {lat: 40.58142309999999, lng: -73.8911852}, {lat: 40.69611039999999, lng: -73.98467649999999}, {lat: 40.6920759, lng: -73.9826145}, {lat: 40.6849166, lng: -73.9780674}, {lat: 40.6840487, lng: -73.9773989}, {lat: 40.6802599, lng: -73.9746933}, {lat: 40.6117136, lng: -74.03074079999999}, {lat: 40.6238796, lng: -74.01902179999999}, {lat: 40.679744, lng: -73.986961}, {lat: 30.5921485, lng: -83.1238166}, {lat: 30.5921485, lng: -83.1238166}, {lat: 40.6265527, lng: -73.9709271}, {lat: 40.5978369, lng: -73.9654094}, {lat: 40.5911208, lng: -73.9650558}, {lat: 40.6361491, lng: -73.9726597}, {lat: 40.6056704, lng: -73.9669524}, {lat: 40.575233, lng: -73.96882269999999}, {lat: 40.7028961, lng: -73.99477999999999}, {lat: 40.7007584, lng: -73.9910319}, {lat: 40.6628041, lng: -73.9883224}, {lat: 40.6614724, lng: -73.9861274}, {lat: 40.6390018, lng: -97.58116109999999}, {lat: 42.7179235, lng: -71.15479479999999}, {lat: 40.6493572, lng: -73.97541319999999}, {lat: 40.6667704, lng: -73.99481220000001}, {lat: 40.6999449, lng: -73.9883511}, {lat: 40.596744, lng: -73.985266}, {lat: 40.5792193, lng: -73.98194640000001}, {lat: 40.57555079999999, lng: -73.9811812}, {lat: 42.21886, lng: -70.96713});
@@ -51,8 +49,10 @@
         var manhattan_links = new Array(368, 360, 361, 550, 940, 370, 537, 1014, 828, 1028, 326, 192, 548, 547, 545, 544, 543, 794, 165, 551, 366, 472, 164, 934, 846, 328, 495, 403, 398, 410, 399, 400, 845, 168, 415, 523, 169, 906, 908, 509, 511, 170, 173, 171, 414, 473, 717, 529, 510, 501, 891, 416, 504, 503, 180, 181, 420, 179, 500, 229, 178, 507, 506, 502, 508, 248, 526, 527, 741, 847, 514, 172,  989, 990, 986, 987, 937, 224, 475, 899, 187, 421, 739, 445, 351, 452, 175, 988, 435, 434, 166, 965, 966, 964, 967, 968, 969, 970, 971, 347, 163, 505, 524, 182, 176, 177, 790, 791, 795, 735, 734, 733, 732, 731, 736, 930, 274, 188, 253, 689, 691, 690, 186, 437, 436, 183, 223, 929, 841, 840, 519, 838, 516, 517, 512, 558, 554, 933, 895, 157, 720, 722, 530, 521, 542, 413, 412, 404, 540, 406, 522, 528, 536, 932, 287, 446, 531, 419, 552, 909, 910, 426, 427, 430, 438, 740, 532, 826, 535, 339, 338, 985);
         var staten_island_links = new Array(862, 861, 859, 860, 864, 358, 858, 850, 863, 618, 1061, 1060, 1062, 244, 1071, 638, 644, 639, 154, 631, 628, 451, 702);
         var bronx_links = new Array(1039, 1040, 730, 1026, 1041, 1042, 824, 823, 318, 812, 825, 278, 294, 811, 146, 1035, 277, 866, 884, 885, 1058, 1036, 1034);
+        var all_camera_pos = [brooklyn, queens, manhattan, staten_island, bronx];
+        var all_camera_link = [brooklyn_links, queens_links, manhattan_links, staten_island_links, bronx_links];
 
-        for (const borough of all_camera_link) {
+        for (let borough of all_camera_link) {
           borough += cam_link_header
         };
 
@@ -81,10 +81,10 @@
           strokeWeight: 2
         });
 
-        var line2 = new googl.maps.Polyline({
+        var line2 = new google.maps.Polyline({
           path: route2,
           geodesic: true,
-          strokeColor: "#FF0000",
+          strokeColor: "0000FF",
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
@@ -92,16 +92,19 @@
         line.setMap(map);
         line2.setMap(map);
 
+        console.log(all_camera_pos);
         var best_route = get_cameras(line, line2, all_camera_pos, all_camera_link);
+        console.log(best_route);
       }
 
       function get_cameras(l, l2, ci, cl) {
+        console.log(ci);
         let links1 = [];
         let links2 = [];
         let sum1 = 0;
         let sum2 = 0;
 
-        for (const borough of ci) {
+        for (let borough of ci) {
           for (let camera = 0; camera < borough[camera].length; camera++) {
             if (google.maps.geometry.poly.isLocationOnEdge(new google.maps.LatLag(camera.lat,camera.lng), l, 0.001)) {
               sum1++;

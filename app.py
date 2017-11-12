@@ -19,8 +19,7 @@ def map():
     end = request.form['end']
     #end = "C-Town Supermarkets, 241 Taaffe Pl, Brooklyn, NY 11205"
     data_dic = utils.route_gen.get_routes(start, end)
-    print data_dic
-    return render_template("map.html", data = data_dic)
+#    return render_template("map.html", data = data_dic)
 
 @app.route("/pmap", methods=["GET","POST"])
 def pmap():
@@ -30,7 +29,7 @@ def pmap():
 
 @app.route("/comp", methods=['GET','POST'])
 def compform():
-    print request.method
+    #print request.method
     if request.method=="GET":
         return render_template('complaintform.html')
     if request.method=="POST":
