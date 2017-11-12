@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 fp = open("test.html")
-soup = BeautifulSoup(fp, "lxml")
+soup = BeautifulSoup(fp, "html.parser")
 
 l = []
 l2 = []
@@ -30,7 +30,7 @@ del l4 [len(l4) - 1]
 for k in range(len(l2)):
     if not "Inactive" in l2[k]: #get rid of inactive cameras
         l3.append(l4[k])
-        
+
 
 j = 0
 d = {}
@@ -62,7 +62,7 @@ for link in soup.find_all('input'):
         else:
             dstatenisland[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         j = j + 1
-        
+
 #print(dmanhattan)
 #print(dbrooklyn)
 #print(dbronx)
