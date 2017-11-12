@@ -12,9 +12,13 @@ app= Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route("/map")
+@app.route("/map", method="POST")
 def map():
-    data_dic = utils.route_gen.get_routes("858 Jamaica Ave, Brooklyn, NY 11208", "C-Town Supermarkets, 241 Taaffe Pl, Brooklyn, NY 11205")
+    start = request.form['start']
+    #start = "858 Jamaica Ave, Brooklyn, NY 11208"
+    end = request.form['end']
+    #end = "C-Town Supermarkets, 241 Taaffe Pl, Brooklyn, NY 11205"
+    data_dic = utils.route_gen.get_routes(start, end)
     print data_dic
     return render_template("map.html", data = data_dic)
 
