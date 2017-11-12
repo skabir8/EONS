@@ -112,7 +112,7 @@
 
         ///console.log(all_camera_pos);
         var best_route = get_cameras(line, line2, all_camera_pos, all_camera_link);
-        ///console.log(best_route);
+        console.log(best_route);
       }
 
       function get_cameras(l, l2, ci, cl) {
@@ -121,21 +121,22 @@
         let links2 = [];
         let sum1 = 0;
         let sum2 = 0;
-
+        var vari = 0
         for (let borough of ci) {
           //console.log(borough)
           for (let camera = 0; camera < borough.length; camera++) {
-            console.log(borough.length)
+            //console.log(borough.length)
             if (google.maps.geometry.poly.isLocationOnEdge(new google.maps.LatLng(borough[camera].lat,borough[camera].lng), l, 0.010)) {
               console.log('Ok')
               sum1++;
-              links1.push([borough][camera]);}
+              links1.push(cl[vari][camera]);}
 
-            else {
+            else if (google.maps.geometry.poly.isLocationOnEdge(new google.maps.LatLng(borough[camera].lat,borough[camera].lng), l2, 0.010)) {
+              console.log('Ok')
               sum2++;
-              links2.push([borough][camera])
-            }
+              links2.push(cl[vari][camera]);}
           }
+          vari++;
         }
 
         if (sum1 > sum2) {
