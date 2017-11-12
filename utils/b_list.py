@@ -75,10 +75,28 @@ for link in soup.find_all('input'):
             dstatenisland[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         j = j + 1
 
-#print(lmanhattan)
+def pair_addr_w_coors(list):
+    d = []
+    i=0
+    for address in list:
+        coors = cam_coors.getcoors(address)
+        d.append(coors)
+        print (i, d)
+        i+= 1
+    return d
+
+print(pair_addr_w_coors(lmanhattan))
+'''
+print(pair_addr_w_coors(lbrooklyn))
+print(pair_addr_w_coors(lqueens))
+print(pair_addr_w_coors(lbronx))
+print(pair_addr_w_coors(lstatenisland))
+'''
+#print(lmanhattan)       
 #print(dmanhattan)
 #print(dbrooklyn)
 #print(dbronx)
 #print(dqueens)
 #print(dstatenisland)
 #print(d)
+
