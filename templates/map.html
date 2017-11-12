@@ -24,44 +24,43 @@
     <script>
       var map;
       function initMap() {
-      	const scale = 2138.43888;
-      	// var origin = {lat: 40.740913, lng: -74.007468};
-      	// var dest = {lat: 40.738506, lng: -74.001683};
+      	var origin = {lat: 40.740913, lng: -74.007468};
+      	var dest = {lat: 40.738506, lng: -74.001683};
       	var origin2 = {lat: 40.69143, lng: -73.86648};
       	var dest2 = {lat: 40.69623, lng: -73.89988};
+      	var middle = {lat: (origin.lat+dest.lat)/2, lng: (origin.lng+dest.lng)/2};
       	var middle2 = {lat: (origin2.lat+dest2.lat)/2, lng: (origin2.lng+dest2.lng)/2};
-      	var distance2 = 29040;
-      	// var cameral = {lat: 40.7397433, lng: -74.0047181};
-       //  var route = new Array(origin, {lat: 40.7389629, lng: -74.0029497}, {lat: 40.7389027, lng: -74.0029076}, {lat: 40.7387625, lng: -74.002927}, {lat: 40.7387685, lng: -74.0024425}, dest);
+      	var cameral = {lat: 40.7397433, lng: -74.0047181};
+        var route = new Array(origin, {lat: 40.7389629, lng: -74.0029497}, {lat: 40.7389027, lng: -74.0029076}, {lat: 40.7387625, lng: -74.002927}, {lat: 40.7387685, lng: -74.0024425}, dest);
         var route2 = new Array({lat: 40.69143,lng: -73.86648}, {lat: 40.6911,lng: -73.86854}, {lat: 40.6905,lng: -73.87095}, {lat: 40.69028,lng: -73.87171}, {lat: 40.69019,lng: -73.87196}, {lat: 40.68904,lng: -73.87465}, {lat: 40.6886,lng: -73.87566}, {lat: 40.6899,lng: -73.87691}, {lat: 40.69069,lng: -73.87768}, {lat: 40.6908,lng: -73.87779}, {lat: 40.69093,lng: -73.87796}, {lat: 40.69106,lng: -73.87817}, {lat: 40.69115,lng: -73.87835}, {lat: 40.69123,lng: -73.8787}, {lat: 40.69126,lng: -73.87913}, {lat: 40.69119,lng: -73.87951}, {lat: 40.69116,lng: -73.87997}, {lat: 40.69117,lng: -73.88021}, {lat:40.6912,lng: -73.8804}, {lat: 40.69127,lng: -73.88066}, {lat: 40.69137,lng: -73.88092}, {lat: 40.69161,lng: -73.88141}, {lat: 40.69185,lng: -73.88184}, {lat: 40.69207,lng: -73.88226}, {lat: 40.69223,lng: -73.88248},{lat: 40.69233,lng: -73.88261}, {lat: 40.69233,lng: -73.88267}, {lat: 40.6923,lng: -73.88277}, {lat: 40.69227,lng: -73.88285}, {lat: 40.6922,lng: -73.883}, {lat: 40.69122,lng: -73.88755}, {lat: 40.69095,lng: -73.88885}, {lat: 40.69096,lng: -73.88897}, {lat: 40.69135,lng: -73.89031}, {lat: 40.69185,lng: -73.89204}, {lat: 40.69262,lng: -73.89469}, {lat: 40.69319,lng: -73.89574}, {lat: 40.69384,lng: -73.89691}, {lat: 40.69411,lng:-73.89733}, {lat: 40.6948,lng: -73.89819}, {lat: 40.69623,lng: -73.89988});
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: middle2,
+          center: middle,
           zoom: 15
         });
 
-        // var camera = new google.maps.Marker({
-        // 	position: cameral,
-        // 	map: map,
-        // 	label: 'C'
-        // });
+        var camera = new google.maps.Marker({
+        	position: cameral,
+        	map: map,
+        	label: 'C'
+        });
 
 
         var marker1 = new google.maps.Marker({
-        	position: origin2,
+        	position: origin,
         	map: map,
         	label: 'A'
         });
 
         var marker2 = new google.maps.Marker({
-        	position: dest2,
+        	position: dest,
         	map: map,
         	label: 'B'
         });
 
         var line = new google.maps.Polyline({
         	// path: new Array(origin, dest),
-          path: route2,
+          path: route,
         	geodesic: true,
         	strokeColor: "#FF0000",
           strokeOpacity: 1.0,
@@ -69,14 +68,15 @@
         });
 
         line.setMap(map);
+    }
 
-      	// if (google.maps.geometry.poly.isLocationOnEdge(camera.position, line, 0.001)) {
-      	// 	alert("Yes");
-      	// }
-      	// else {
-      	// 	alert("No");
-      	// }
-      }
+      // 	if (google.maps.geometry.poly.isLocationOnEdge(camera.position, line, 0.001)) {
+      // 		alert("Yes");
+      // 	}
+      // 	else {
+      // 		alert("No");
+      // 	}
+      // }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4&callback=initMap"
     async defer></script>
