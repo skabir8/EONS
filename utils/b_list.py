@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-fp = open("test.html")
+fp = open("utils/test.html")
 soup = BeautifulSoup(fp, "html.parser")
 
 l = []
@@ -75,7 +75,7 @@ for link in soup.find_all('input'):
             dstatenisland[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         j = j + 1
 
-print(lmanhattan)        
+#print(lmanhattan)
 #print(dmanhattan)
 #print(dbrooklyn)
 #print(dbronx)

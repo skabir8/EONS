@@ -13,12 +13,9 @@ def home():
 
 @app.route("/map")
 def map():
-    data_dic={}
+    data_dic = utils.route_gen.get_routes("858 Jamaica Ave, Brooklyn, NY 11208", "C-Town Supermarkets, 241 Taaffe Pl, Brooklyn, NY 11205")
 
-
-
-
-    return render_template("map2.html")
+    return render_template("map.html", data = data_dic)
 
 @app.route("/comp", methods=['GET','POST'])
 def compform():
