@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=geometry"></script>
+    <script>
+      var map;
+      function initMap() {
+      	var origin = {lat: 40.740913, lng: -74.007468};
+      	var dest = {lat: 40.738506, lng: -74.001683};
+      	var origin2 = {lat: 40.69143, lng: -73.86648};
+      	var dest2 = {lat: 40.69097, lng: -73.95953};
+      	var cameral = {lat: 40.7397433, lng: -74.0047181};
+        var route = new Array(origin, {lat: 40.7389629, lng: -74.0029497}, {lat: 40.7389027, lng: -74.0029076}, {lat: 40.7387625, lng: -74.002927}, {lat: 40.7387685, lng: -74.0024425}, dest);
+        var route2 = new Array(
+)
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: origin,
+          zoom: 17
+        });
+
+        var camera = new google.maps.Marker({
+        	position: cameral,
+        	map: map,
+        	label: 'C'
+        });
+
+
+        var marker1 = new google.maps.Marker({
+        	position: origin,
+        	map: map,
+        	label: 'A'
+        });
+
+        var marker2 = new google.maps.Marker({
+        	position: dest,
+        	map: map,
+        	label: 'B'
+        });
+
+        var line = new google.maps.Polyline({
+        	// path: new Array(origin, dest),
+          path: route,
+        	geodesic: true,
+        	strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        line.setMap(map);
+
+      	// if (google.maps.geometry.poly.isLocationOnEdge(camera.position, line, 0.001)) {
+      	// 	alert("Yes");
+      	// }
+      	// else {
+      	// 	alert("No");
+      	}
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4&callback=initMap"
+    async defer></script>
+  </body>
+</html>
