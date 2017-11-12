@@ -44,6 +44,21 @@ def get_all_cams(camlist):
     for x in camlist:
         ret_sum += get_ped_percentage(get_cam_image(x))
     return ret_sum
+
+
+def four_cam_avg():
+    imgs = ['http://dotsignals.org/google_popup.php?cid=503',
+    'http://dotsignals.org/google_popup.php?cid=503',
+    'http://dotsignals.org/google_popup.php?cid=505',
+    'http://dotsignals.org/google_popup.php?cid=506']
+    imgs = [get_cam_image(x) for x in imgs]
+    imgs = [get_ped_percentage(x) for x in imgs]
+    total = 0
+    for cam in imgs:
+        total += cam
+    print(total/4)
+
+    
 #print (mutate_url('http://dotsignals.org/multiview2.php?listcam=983'))
 #get_cam_image('http://dotsignals.org/google_popup.php?cid=503')
 #http://dotsignals.org/multiview2.php?listcam=983
