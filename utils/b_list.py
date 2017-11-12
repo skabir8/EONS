@@ -41,6 +41,13 @@ dstatenisland = {}
 dqueens = {}
 dbronx = {}
 
+
+lmanhattan = []
+lbrooklyn = []
+lstatenisland = []
+lqueens = []
+lbronx = []
+
 for link in soup.find_all('input'):
     if link.get('type') == "checkbox":
 
@@ -52,17 +59,23 @@ for link in soup.find_all('input'):
 
         #build dictionaries based on borough
         if j < 215:
+            lmanhattan.append(l3[j])
             dmanhattan[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         elif j < 312:
+            lbrooklyn.append(l3[j])
             dbrooklyn[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         elif j < 349:
+            lbronx.append(l3[j])
             dbronx[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         elif j < 516:
+            lqueens.append(l3[j])
             dqueens[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         else:
+            lstatenisland.append(l3[j])
             dstatenisland[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
         j = j + 1
 
+print(lmanhattan)        
 #print(dmanhattan)
 #print(dbrooklyn)
 #print(dbronx)
