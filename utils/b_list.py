@@ -29,7 +29,7 @@ del l4[len(l4) - 1]
 del l4 [len(l4) - 1]
 
 for k in range(len(l2)):
-    if not "Inactive" in l2[k]: #get rid of inactive cameras
+    if "Inactive" not in l2[k]: #get rid of inactive cameras
         l3.append(l4[k])
 
 

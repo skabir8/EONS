@@ -8,21 +8,19 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
+        height: 50%;
+        width: 60%;
+        padding:  10%;
       }
     </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4&callback=initMap"
+    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=geometry"></script>
   </head>
   <body>
     <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=geometry"></script>
     <script>
-      var map;
+      // var map;
       function initMap() {
       	var origin = {lat: {{data['origin']['lat']}}, lng: {{data['origin']['lng']}}};
       	var dest = {lat: {{data['destination']['lat']}}, lng: {{data['destination']['lng']}}};
@@ -37,13 +35,18 @@
         var queens = [];
         var manhattan = [];
         var staten_island = [];
-        var bronx = [];
+        var bronx = [{lat: 40.8201415, lng: -73.9130692}, {lat: 40.8311993, lng: -73.90032889999999}, {lat: 40.80778189999999, lng: -73.9295152}, {lat: 40.8228401, lng: -73.88266770000001}, {}, {}];
 
+        var cam_link_header = 'dotsignals.org/multiview2.php?listcam=';
         var brooklyn_links = [];
         var queens_links =[];
         var manhattan_links = [];
         var staten_island_links = [];
-        var bronx_links = []; 
+        var bronx_links = [1039, 1040, 730]; 
+
+        for (const borough of all_camera_link) {
+          borough += cam_link_header
+        }
 
         var map = new google.maps.Map(document.getElementById('map'), {
           center: middle,
@@ -81,43 +84,41 @@
         line.setMap(map);
         line2.setMap(map);
 
-        var dict = get_cameras(line, all_camera_pos, all_camera_link);
-        var dict2 = get_cameras(line2, all_camera_pos, all_camera_link);
-
-        if (dict.sum > dict2.sum)  {
-          return {
-            route: line,
-            camera_links: dict.links
-          }
-        }
-        else {
-          return {
-            route: line2,
-            camera_links: dict2.links
-          }
-        }
+        var best_route = get_cameras(line, line2, all_camera_pos, all_camera_link);
       }
 
-      function get_cameras(l,ci, cl) {
-        var links = [];
-        var sum = 0;
+      function get_cameras(l, l2, ci, cl) {
+        let links1 = [];
+        let links2 = [];
+        let sum1 = 0;
+        let sum2 = 0;
 
         for (const borough of ci) {
           for (let camera = 0; camera < borough[camera].length; camera++) {
             if (google.maps.geometry.poly.isLocationOnEdge(new google.maps.LatLag(camera.lat,camera.lng), l, 0.001)) {
-              sum++;
-              links.push(cl[borough][camera]);
+              sum1++;
+              links1.push(cl[borough][camera]);
+            }
+            else {
+              sum2++;
+              link2.push(cl[borough][camera])
             }
           }
         }
 
-        return {
-          sum: sum,
-          links: links
+        if (sum1 > sum2) {
+          return {
+            route: l,
+            camera_links: links1
+          }
+        }
+        else {
+          return {
+            route: l2,
+            camera_links: links2
+          }
         }
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4&callback=initMap"
-    async defer></script>
   </body>
 </html>
