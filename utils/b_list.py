@@ -88,8 +88,8 @@ def pair_addr_w_coors(list):
 
 #print(pair_addr_w_coors(lmanhattan))
 
-print(pair_addr_w_coors(lbrooklyn))
-#print(pair_addr_w_coors(lqueens))
+#print(pair_addr_w_coors(lbrooklyn))
+print(pair_addr_w_coors(lqueens))
 #print(pair_addr_w_coors(lbronx))
 #print(pair_addr_w_coors(lstatenisland))
 
