@@ -24,58 +24,104 @@
     <script>
       var map;
       function initMap() {
-      	const scale = 2138.43888;
-      	// var origin = {lat: 40.740913, lng: -74.007468};
-      	// var dest = {lat: 40.738506, lng: -74.001683};
-      	var origin2 = {lat: {{data['origin']['lat']}}, lng: {{data['origin']['lng']}}};
-      	var dest2 = {lat: {{data['destination']['lat']}}, lng: {{data['destination']['lng']}}};
-      	var middle2 = {lat: (origin2.lat+dest2.lat)/2, lng: (origin2.lng+dest2.lng)/2};
-      	var distance2 = 29040;
-      	// var cameral = {lat: 40.7397433, lng: -74.0047181};
-       //  var route = new Array(origin, {lat: 40.7389629, lng: -74.0029497}, {lat: 40.7389027, lng: -74.0029076}, {lat: 40.7387625, lng: -74.002927}, {lat: 40.7387685, lng: -74.0024425}, dest);
-        var route2 = new Array({{data['way1']}});
+      	var origin = {lat: {{data['origin']['lat']}}, lng: {{data['origin']['lng']}}};
+      	var dest = {lat: {{data['destination']['lat']}}, lng: {{data['destination']['lng']}}};
+      	var middle = {lat: (origin.lat+dest.lat)/2, lng: (origin.lng+dest.lng)/2};
+        var route = new Array({{data['route1']}});
+        var route2 = new Array({{data['route2']}});
+
+        var all_camera_pos = [brooklyn, queens, manhattan, staten_island, bronx];
+        var all_camera_link = [brooklyn_links, queens_links, manhattan_links, staten_island_links, bronx_links];
+
+        var brooklyn = [];
+        var queens = [];
+        var manhattan = [];
+        var staten_island = [];
+        var bronx = [];
+
+        var brooklyn_links = [];
+        var queens_links =[];
+        var manhattan_links = [];
+        var staten_island_links = [];
+        var bronx_links = []; 
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: middle2,
+          center: middle,
           zoom: 15
         });
 
-        // var camera = new google.maps.Marker({
-        // 	position: cameral,
-        // 	map: map,
-        // 	label: 'C'
-        // });
-
-
         var marker1 = new google.maps.Marker({
-        	position: origin2,
+        	position: origin,
         	map: map,
         	label: 'A'
         });
 
         var marker2 = new google.maps.Marker({
-        	position: dest2,
+        	position: dest,
         	map: map,
         	label: 'B'
         });
 
         var line = new google.maps.Polyline({
-        	// path: new Array(origin, dest),
-          path: route2,
+          path: route,
         	geodesic: true,
         	strokeColor: "#FF0000",
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
 
-        line.setMap(map);
+        var line2 = new googl.maps.Polyline({
+          path: route2,
+          geodesic: true,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
 
-      	// if (google.maps.geometry.poly.isLocationOnEdge(camera.position, line, 0.001)) {
-      	// 	alert("Yes");
-      	// }
-      	// else {
-      	// 	alert("No");
-      	// }
+        line.setMap(map);
+        line2.setMap(map);
+
+        var dict = get_cameras(line, all_camera_pos, all_camera_link);
+        var dict2 = get_cameras(line2, all_camera_pos, all_camera_link);
+
+        if (dict.sum > dict2.sum)  {
+          return {
+            route: line,
+            links: dict.links
+          }
+        }
+        else {
+          return {
+            route: line2,
+            links: dict2.links
+          }
+        }
+      }
+
+      function get_cameras(l,ci, cl) {
+        var links = [];
+        var sum = 0;
+
+        for (const borough of ci) {
+          for (let camera = 0; camera < borough[camera].length; camera++) {
+            if (google.maps.geometry.poly.isLocationOnEdge(new google.maps.LatLag(camera.lat,camera.lng), l, 0.001)) {
+              sum++;
+              links.push(cl[borough][camera]);
+            }
+          }
+        }
+
+        return {
+          sum: sum,
+          links: links
+        }
+
+      }
+
+      function create_camera(lati, long) {
+
+      }
+
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4&callback=initMap"
