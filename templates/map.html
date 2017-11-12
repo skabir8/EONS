@@ -23,6 +23,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=geometry"></script>
     <script>
       var map;
+      var return_path;
       function initMap() {
         var origin = {
           lat: parseFloat({{data['origin'][0]}}),
@@ -115,7 +116,7 @@
         //console.log(best_route);
         var camml = best_route
         //console.log(camml.camera_links.toString())
-        var plac = '/pmap?cams='+ camml.camera_links.toString() + '&route='+"{{data['corr']}}"
+        var plac = '/pmap?cams='+ camml.camera_links.toString() + '&route='+return_path
         console.log(plac)
         //console.log(plac)
         window.location.href = plac;
@@ -148,12 +149,14 @@
         }
 
         if (sum1 > sum2) {
+          return_path = "{{data['corr1']}}"
           return {
             route: l,
             camera_links: links1
           }
         }
         else {
+          return_path = "{{data['corr2']}}"
           return {
             route: l2,
             camera_links: links2

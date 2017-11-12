@@ -26,7 +26,8 @@ def get_routes(origin,destination):
 
     for i in range(2):
         polyline_list.append(poly_line[i]['overview_polyline']['points'])
-    ret_dic['corr'] = polyline_list[0]
+    ret_dic['corr1'] = polyline_list[0]
+    ret_dic['corr2'] = polyline_list[1]
     for i in polyline_list:
         pol_val = polyline.decode(i)
         poly_line_array.append(pol_val)
