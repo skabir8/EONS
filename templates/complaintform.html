@@ -11,19 +11,16 @@
           <div class="panel panel-default" style="width:40%; radius:20px">
             <div class="panel-heading" style="background:#c2c2d6"><b><font color="black">Submit a Complaint</font></b></div>
             <div class="panel-body" style="background:#f0f0f5">
-              <form action="/action_page.php">
+              <form action="/comp" method="POST">
               <font color="black" size="5" padding:"5px"> <b>What is Your Complaint?:</b> <br>
               <textarea name="compaint" rows="5" cols="30" style="resize:none"></textarea>
 
               <font color="black" size="5" padding:"5px"> <b>Complaint Location:</b> <br>
               <input id="myLocTextField" type="text" color="black" name="location">
-
-              <font color="black" size="5" padding:"5px"> <b>Complaint Location:</b> <br>
-              <input type=
               <button class="btn btn-primary" type="button" onclick="getLocation()" style="background-color:#8080ff; padding:10px">Find Me</button>
-              <br>
+              <br><br>
 
-              <a class="btn btn-primary" style="width:fit; padding:14px;font-size:20px; background-color:#6666ff">Submit Complaint</a><br><br>
+              <button class="btn btn-primary" type="submit" style="width:fit; padding:14px;font-size:20px; background-color:#6666ff">Submit Complaint</button><br><br>
 
             </form>
 
