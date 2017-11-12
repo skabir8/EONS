@@ -22,6 +22,12 @@ def map():
     print data_dic
     return render_template("map.html", data = data_dic)
 
+@app.route("/pmap", methods=["GET","POST"])
+def pmap():
+    s = request.args.get('s')
+    cl = request.args.get('cl')
+    return s + cl
+
 @app.route("/comp", methods=['GET','POST'])
 def compform():
     print request.method
