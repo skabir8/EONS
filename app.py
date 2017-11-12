@@ -12,7 +12,7 @@ app= Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route("/map", method="POST")
+@app.route("/map", methods=["POST"])
 def map():
     start = request.form['start']
     #start = "858 Jamaica Ave, Brooklyn, NY 11208"

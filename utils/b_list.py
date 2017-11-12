@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import cam_coors
-fp = open("test.html")
+fp = open("utils/test.html")
 soup = BeautifulSoup(fp, "html.parser")
 
 l = []
@@ -108,13 +108,12 @@ def pair_addr_w_coors(list,listurl):
 #print(pair_addr_w_coors(lbrooklyn,urlbrooklyn))
 #print(pair_addr_w_coors(lqueens,urlqueens))
 #print(pair_addr_w_coors(lbronx,urlbronx))
-print(pair_addr_w_coors(lstatenisland,urlstatenisland))
+#print(pair_addr_w_coors(lstatenisland,urlstatenisland))
 
-#print(lmanhattan)       
+#print(lmanhattan)
 #print(dmanhattan)
 #print(dbrooklyn)
 #print(dbronx)
 #print(dqueens)
 #print(dstatenisland)
 #print(d)
-
