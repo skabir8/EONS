@@ -5,7 +5,7 @@ def getcoors(street_address):
     parameters = {"address": street_address}
     response = requests.get("https://maps.googleapis.com/maps/api/geocode/json", params = parameters)
     data=response.json()
-    
+
     ans = parse_content(data)
 
     return ans
@@ -25,5 +25,15 @@ def parse_content(data):
 
     return ans
 
-#print(getcoors("adam c powell blvd @ 110 st/cpn"))
+def get_cordinate(address):
+    base = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBahwZ-aiBTkaQD8J2xYAsyqEnUFAceYAw'
+    parameters = {"address": address}
+    response = requests.get(base, params = parameters)
+    data = response.json()
+    ret_l = []
+    ret_l.append(data['results'][0]['geometry']['location']['lat'])
+    ret_l.append(data['results'][0]['geometry']['location']['lng'])
+    return ret_l
 
+print(get_cordinate('Hunter college, new york'))
+#print(getcoors("adam c powell blvd @ 110 st/cpn"))

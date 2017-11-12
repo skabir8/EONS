@@ -11,8 +11,8 @@ import cam_coors
 
 def get_routes(origin,destination):
     ret_dic = {}
-    origin_dat = cam_coors.getcoors(origin)
-    desti_dat = cam_coors.getcoors(destination)
+    origin_dat = cam_coors.get_cordinate(origin)
+    desti_dat = cam_coors.get_cordinate(destination)
     base = 'https://maps.googleapis.com/maps/api/directions/json?'
     origin = 'origin=' + origin
     destination = '&destination=' + destination
