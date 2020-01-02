@@ -30,7 +30,7 @@ def pmap():
     all_lists =[]
     summ = 0
     for x in all_c:
-        all_lists.append('http://dotsignals.org/google_popup.php?cid='+ x)
+        all_lists.append('http://nyctmc.org/google_popup.php?cid='+ x)
     summ = utils.classify.get_all_cams(all_lists)
     pol_val = polyline.decode(cl)
     origin = pol_val[0]

@@ -53,27 +53,27 @@ for link in soup.find_all('input'):
     if link.get('type') == "checkbox":
 
         #output as string-- easier to read
-        #print("Name: " + l3[j] + " Link: ""dotsignals.org/multiview2.php?listcam=" + link.get('value'))
+        #print("Name: " + l3[j] + " Link: ""nyctmc.org/multiview2.php?listcam=" + link.get('value'))
 
         #output as a single dictionary (unordered)
-        #d[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+        #d[l3[j]] = "nyctmc.org/multiview2.php?listcam=" + link.get('value')
 
         #build dictionaries based on borough
         if j < 215:
             lmanhattan.append(l3[j])
-            dmanhattan[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+            dmanhattan[l3[j]] = "nyctmc.org/multiview2.php?listcam=" + link.get('value')
         elif j < 312:
             lbrooklyn.append(l3[j])
-            dbrooklyn[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+            dbrooklyn[l3[j]] = "nyctmc.org/multiview2.php?listcam=" + link.get('value')
         elif j < 349:
             lbronx.append(l3[j])
-            dbronx[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+            dbronx[l3[j]] = "nyctmc.org/multiview2.php?listcam=" + link.get('value')
         elif j < 516:
             lqueens.append(l3[j])
-            dqueens[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+            dqueens[l3[j]] = "nyctmc.org/multiview2.php?listcam=" + link.get('value')
         else:
             lstatenisland.append(l3[j])
-            dstatenisland[l3[j]] = "dotsignals.org/multiview2.php?listcam=" + link.get('value')
+            dstatenisland[l3[j]] = "nyctmc.org/multiview2.php?listcam=" + link.get('value')
         j = j + 1
 
 

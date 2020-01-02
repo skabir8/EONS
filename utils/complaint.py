@@ -9,7 +9,7 @@ DIR+='/../static/complaints.db'
 
 
 def getCoords(address):
-    data = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4")
+    data = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBaKfjEKjJYrAX1paxoXt-tvv72KICf1bU")
     coords = data.json()["results"][0]["geometry"]["location"]
     return str(coords['lat']) + ',' + str(coords['lng'])
 

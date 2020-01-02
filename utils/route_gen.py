@@ -16,7 +16,7 @@ def get_routes(origin,destination):
     base = 'https://maps.googleapis.com/maps/api/directions/json?'
     origin = 'origin=' + origin
     destination = '&destination=' + destination
-    base += origin + destination + '&mode=walking&alternatives=true&key=AIzaSyCrIErnSCAoA07R_m9NqNIQNcuD0Cf3Vn4'
+    base += origin + destination + '&mode=walking&alternatives=true&key=AIzaSyBaKfjEKjJYrAX1paxoXt-tvv72KICf1bU'
     data = requests.get(base).text
     dic = json.loads(data)
     poly_line = (dic['routes'])

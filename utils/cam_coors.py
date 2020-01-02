@@ -26,7 +26,7 @@ def parse_content(data):
     return ans
 
 def get_cordinate(address):
-    base = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBahwZ-aiBTkaQD8J2xYAsyqEnUFAceYAw'
+    base = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBaKfjEKjJYrAX1paxoXt-tvv72KICf1bU'
     parameters = {"address": address}
     response = requests.get(base, params = parameters)
     data = response.json()
